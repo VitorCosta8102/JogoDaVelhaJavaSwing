@@ -3,12 +3,13 @@ import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.event.*;
+import java.awt.Color;
+
 
 public class JogoDaVelhaSimples {
 	
 	private ImageIcon image1 = new ImageIcon("imagens/circulo.png");
 	private ImageIcon image2 = new ImageIcon("imagens/imagemX.png");
-	private ImageIcon fundo =  new ImageIcon("imagens/fundoBranco.png");
 	private int jogada=1;
 	private JFrame janela;
 	private JPanel painelPrincipal;
@@ -32,7 +33,7 @@ public class JogoDaVelhaSimples {
 	}
 	
 	public void preparaJanela() {
-		janela = new JFrame("Button Grid");
+		janela = new JFrame("Jogo da Velha");
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -53,11 +54,12 @@ public class JogoDaVelhaSimples {
 		painelBotoes.setLayout(new GridLayout(3,3));
 		for(int i=0;i<3;i++)
 			for(int j=0;j<3;j++) {
-				JButton botao = new JButton(fundo);
+				JButton botao = new JButton();
+				botao.setBackground(Color.WHITE);
 				ActionListener figuraListener = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						if(botao.getIcon()==fundo){
+						if(botao.getIcon()==null){
 							if(jogada%2==0) 
 								botao.setIcon(image2);
 							else 
@@ -91,7 +93,7 @@ public class JogoDaVelhaSimples {
 			public void actionPerformed(ActionEvent e) {
 				for(int i=0;i<3;i++)
 					for(int j=0;j<3;j++)
-						matrizBotoes[i][j].setIcon(fundo);
+						matrizBotoes[i][j].setIcon(null);
 				jogada=1;
 			}
 		});
