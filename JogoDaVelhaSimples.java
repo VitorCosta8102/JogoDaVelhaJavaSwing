@@ -1,10 +1,16 @@
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.border.MatteBorder;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.BorderLayout;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
-
 
 public class JogoDaVelhaSimples {
 	
@@ -72,6 +78,7 @@ public class JogoDaVelhaSimples {
 				painelBotoes.add(botao);
 				matrizBotoes[i][j]=botao;
 			}
+		colocaBordas();
 		painelPrincipal.add(painelBotoes,BorderLayout.CENTER);
 	}
 	
@@ -101,8 +108,9 @@ public class JogoDaVelhaSimples {
 	}
 	
 	public void mostraTela() {
-		janela.pack();
+		//janela.pack();
 		janela.setSize(400,400);
+		janela.setResizable(false);
 		janela.setVisible(true);
 	}
 	
@@ -110,6 +118,31 @@ public class JogoDaVelhaSimples {
 		JLabel titulo = new JLabel("Grade de Botoes",SwingConstants.CENTER);
 		titulo.setFont(new Font("Verdana",Font.BOLD,15));
 		painelPrincipal.add(titulo,BorderLayout.NORTH);
+	}
+	
+	public void colocaBordas() {
+		
+		for(int i=0;i<3;i++)
+			for(int j=0;j<3;j++) {
+				int[] bordas = new int[]{0,0,0,0};
+				if(i==0)
+					bordas[2]=2;
+				else if(i==1) {
+					bordas[0]=2;
+					bordas[2]=2;
+				}
+				else
+					bordas[0]=2;
+				if(j==0)
+					bordas[3]=2;
+				else if(j==1) {
+					bordas[1]=2;
+					bordas[3]=2;
+				}
+				else
+					bordas[1]=2;
+				matrizBotoes[i][j].setBorder(new MatteBorder(bordas[0],bordas[1],bordas[2],bordas[3],Color.BLACK));
+			}
 	}
 	
 }
